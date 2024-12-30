@@ -1,0 +1,82 @@
+/* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #EBE1E9;
+}
+
+/* Header Styles */
+.header {
+    display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #FFA2B6;
+  font-family: Arial, sans-serif;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.header .logo img {
+    width: 200px;
+  height: auto;
+}
+
+.header .menu-bar ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+}
+
+.header .menu-bar ul li {
+    margin: 0 15px;
+}
+
+.header .menu-bar ul li a {
+    color: #000;
+    text-decoration: none;
+    font-size: large;
+}
+
+.header .menu-bar ul li a:hover {
+    color: #fff;
+}
+
+.profile-info {
+    text-align: center;
+}
+
+
+.container{
+    margin: 20px 80px 20px 50px;
+    border-radius: 10px;
+}
+
+
+.container .row{
+    width: 100%;
+    display: flex;
+    background-color: #fff;
+    padding: 20px;
+}
+
+.row .jjas{
+    width: 33.33%;
+    background-color: #EBE1E9;
+    margin: 10px;
+    border-radius: 10px;
+    text-align: center;
+    justify-content: center;
+    padding: 20px 30px ;
+    
+}
+
+
+
+.jjas a{
+    text-decoration: none;
+    font-size: larger;
+    color: #000;
+    
+}
+

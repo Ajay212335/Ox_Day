@@ -1,0 +1,133 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #EBE1E9;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.vertical-line {
+    width: 2px; /* Thickness of the vertical line */
+    height: 90%; /* Full height */
+    background-color: #D6536D;
+    justify-content: center;
+    margin-top: 2.4%;/* Line color */
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 60%;
+    max-width: 1200px;
+    background: #FFA2B6;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.image-container {
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-container img {
+    margin-top: 120px;
+
+    width: 600px;
+    height:1auto;
+    object-fit: cover;
+}
+
+.form-container {
+    height: 100%;
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+   
+}
+
+.hds {
+    margin: -100px 10px 20px 10px;
+    text-align: center;
+    background-color: #D6536D;
+    padding: 10px;
+    color: #fff;
+    border-radius: 10px 10px 0 0;
+}
+
+.forms{
+    margin: -19.9px 10px -40px 10px;
+    border-color: #000;
+    border-width: 5px;
+    padding: 20px 20px 40px 20px;
+    background-color: #fff;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+.form-group {
+    margin: 20px 10px 15px 10px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #444;
+}
+
+.form-group input {
+    width: 95%;
+    padding: 10px;
+    border: 1px solid #000;
+    border-radius: 4px;
+    font-size: 14px;
+    background-color: #f6eff5;
+}
+
+.form-group button {
+    width: 100%;
+    padding: 10px;
+    background: #D6536D;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.form-group button:hover {
+    background: #2D6A8E;
+}
+
+.flash-message {
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.flash-message.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.flash-message.danger {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.flash-message.warning {
+    background-color: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffeeba;
+}

@@ -1,0 +1,175 @@
+/* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #EBE1E9;
+}
+
+/* Header Styles */
+.header {
+    display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #FFA2B6;
+  font-family: Arial, sans-serif;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.header .logo img {
+    width: 200px;
+  height: auto;
+}
+
+.header .menu-bar ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+}
+
+.header .menu-bar ul li {
+    margin: 0 15px;
+}
+
+.header .menu-bar ul li a {
+    color: #000;
+    text-decoration: none;
+    font-size: large;
+}
+
+.header .menu-bar ul li a:hover {
+    color: #fff;
+}
+
+/* Main Content Styles */
+.main-content {
+    padding: 20px;
+}
+
+.company-info {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.company-info .company-logo img {
+    width: 150px;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.company-info h1 {
+    margin-top: 10px;
+    font-size: 24px;
+    color: #333;
+}
+
+/* Secondary Navigation */
+.secondary-nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    background-color: #d6536d;
+    border-radius: 5px;
+    padding: 10px 0;
+}
+
+.secondary-nav ul li {
+    margin: 0 15px;
+}
+
+.secondary-nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.secondary-nav ul li a:hover {
+    color: #ffd700;
+}
+
+
+
+
+.container {
+    display: flex;
+    height: 100%;
+    width: 80%;
+    margin-left: 10%;
+    margin-top: 40px;
+}
+.job-list {
+    width: 40%;
+    overflow-y: auto;
+
+}
+.job-item {
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+    background-color: #FFA2B6;
+    margin-bottom: 20px;
+    border-radius: 20px;
+}
+.job-details {
+    margin-left: 30px;
+    width: 60%;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 20px;
+}
+
+
+
+.vishwa {
+    background-color: #d6536d;
+    width: 100%;
+    margin: -20px -20px -20px -20px;
+    padding: 20px 20px 20px 20px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    color: #fff;
+    font-size: 20px;
+}
+
+
+.vishwashre {
+    padding: 20px;
+    font-size: 18px;
+}
+
+.namess {
+    padding: 20px 20px 0px 20px;
+    border-bottom: 2px solid #d1d5db;
+}
+
+
+.namesss {
+    padding: 0px 20px 0px 20px;
+    border-bottom: 2px solid #d1d5db;
+}
+
+.action-buttons {
+    display: flex;
+    width: 100%;
+    
+}
+
+.action-buttons .buton {
+    
+    padding: 10px;
+    width: 50%;
+}
+
+.action-buttons button {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border-width: 0;
+    background-color: #d6536d;
+    font-size: 18px;
+    color: #fff;
+}
