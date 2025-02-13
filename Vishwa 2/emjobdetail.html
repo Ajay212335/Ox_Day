@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Job Details</title>
+    <link rel="stylesheet" href="../static/css/emhome.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="logo">
+            <img src="../static/logo.png" alt="Company Logo">
+        </div>
+        <nav class="menu-bar">
+            <ul>
+                <li><a href="#">My Profile</a></li>
+                <li><a href="#">Browse Jobs</a></li>
+                <li><a href="{{ url_for('emjobdetail') }}">Job Details</a></li>
+                <li><a href="#">Job Applications</a></li>
+                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <section class="profile-info">
+            <h1>Welcome, {{ full_name }}</h1>
+            <p>Email: {{ email }}</p>
+        </section>
+
+        <!-- Available Jobs Section -->
+        <section class="job-list">
+            <h2>Available Jobs</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Job Name</th>
+                        <th>Location</th>
+                        <th>Salary</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for job in jobs %}
+                    <tr>
+                        <td>{{ job.job_name }}</td>
+                        <td>{{ job.location }}</td>
+                        <td>{{ job.salary }}</td>
+                        <td>{{ job.job_type }}</td>
+                        <td>{{ job.description }}</td>
+                        <td><a href="/apply/{{ job._id }}" class="apply-button">Apply</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+    </main>
+</body>
+</html>

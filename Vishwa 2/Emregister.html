@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Registration</title>
+    <link rel="stylesheet" href="../static/css/job.css">
+    <script>
+        let sessionId = null;
+
+        function sendOTP() {
+            const mobile = document.getElementById('phone').value.trim();
+            const errorMessage = document.getElementById('error-message');
+
+            if (!mobile || mobile.length !== 10 || !/^\d{10}$/.test(mobile)) {
+                errorMessage.textContent = 'Please enter a valid 10-digit mobile number.';
+                return;
+            }
+
+            fetch(`https://2factor.in/API/V1/f50b3758-c436-11ef-8b17-0200cd936042/SMS/${mobile}/AUTOGEN`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.Status === 'Success') {
+                        sessionId = data.Details;
+                        document.getElementById('step-1').style.display = 'none';
+                        document.getElementById('step-2').style.display = 'block';
+                        errorMessage.textContent = '';
+                    } else {
+                        errorMessage.textContent = 'Failed to send OTP. Please try again.';
+                    }
+                })
+                .catch(() => {
+                    errorMessage.textContent = 'Error sending OTP. Please try again later.';
+                });
+        }
+
+        function verifyOTP() {
+            const otp = document.getElementById('otp').value.trim();
+            const errorMessage = document.getElementById('error-message');
+
+            if (!otp) {
+                errorMessage.textContent = 'Please enter the OTP.';
+                return;
+            }
+
+            if (!sessionId) {
+                errorMessage.textContent = 'Session ID is missing. Please request a new OTP.';
+                return;
+            }
+
+            fetch(`https://2factor.in/API/V1/f50b3758-c436-11ef-8b17-0200cd936042/SMS/VERIFY/${sessionId}/${otp}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.Status === 'Success') {
+                        errorMessage.textContent = '';
+                        alert('OTP Verified Successfully! You are now registered.');
+                        // Redirect or perform further registration steps here
+                    } else {
+                        errorMessage.textContent = 'Invalid OTP. Please try again.';
+                    }
+                })
+                .catch(() => {
+                    errorMessage.textContent = 'Error verifying OTP. Please try again later.';
+                });
+        }
+    </script>
+</head>
+<body>
+    <div class="form-container">
+        <!-- Header Section -->
+        <div class="hds">
+            <h1 style="color: #fff;">Employee Registration</h1>
+        </div>
+
+        <!-- Display Error Message -->
+        {% if error_message %}
+        <div class="error-message" style="color: red; text-align: center; margin-bottom: 10px;">
+            {{ error_message }}
+        </div>
+        {% endif %}
+
+        <!-- Registration Form -->
+        <form action="/register_employee" method="POST" enctype="multipart/form-data">
+            <div class="Forms">
+                <!-- Personal Information Section -->
+               
+                    <center><h2>Personal Information</h2></center>
+             
+
+                <!-- Profile Photo -->
+                <div class="row">
+                    <div class="form-group">
+                        <label for="profile_photo">Upload a Profile Picture :</label>
+                        <div class="custom-file-input" id="custom-file-container">
+                        <input type="file" id="profile_photo" name="profile_photo">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Name and DOB -->
+                <div class="row">
+                    <div class="form-group">
+                        <label for="full_name">Full Name:</label>
+                        <input type="text" id="full_name" name="full_name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="dob">Date of Birth:</label>
+                        <input type="date" id="dob" name="dob" required>
+                    </div>
+                    
+                </div>
+
+                <!-- Email and Phone -->
+                <div class="row">
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group" id="step-1">
+                        <label for="phone">Phone:</label>
+                        <input type="text" id="phone" name="phone" required>
+                        <button type="button" class="button" onclick="sendOTP()">Send OTP</button>
+                    </div>
+                </div>
+
+                <!-- OTP Verification -->
+                <div class="form-group" id="step-2" style="display: none;">
+                    <label for="otp">Enter OTP:</label>
+                    <input type="text" id="otp" placeholder="Enter the OTP">
+                    <button type="button" class="button" onclick="verifyOTP()">Verify OTP</button>
+                </div>
+
+                <!-- Address -->
+                <div class="form-group">
+                    <label for="address">Address:</label>
+                    <textarea id="address" name="address" required></textarea>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <label for="skills">Skills:</label>
+                        <input type="text" id="skills" name="skills" required>
+                    </div>
+        
+                    <div class="form-group">
+                        <label for="work_experience">Work Experience:</label>
+                        <input type="text" id="work_experience" name="work_experience" required>
+                    </div>
+                </div>
+            
+            
+            
+
+            
+            <div class="horizontal-line"></div>
+                <br>
+            <center><h2>Education Information</h2></center>
+            <br>
+            <div class="row">
+                <div class="form-group">
+                    <label for="tenth_percentage">10th Percentage:</label>
+                    <input type="text" id="tenth_percentage" name="tenth_percentage" required>
+                </div>
+    
+                <div class="form-group">
+                    <label for="twelfth_percentage">12th Percentage:</label>
+                    <input type="text" id="twelfth_percentage" name="twelfth_percentage" required>
+                </div>
+            </div>
+            
+
+            
+
+            <div class="form-group">
+                <label for="degree_cgpa">Degree CGPA:</label>
+                <input type="text" id="degree_cgpa" name="degree_cgpa" required>
+            </div>
+
+            <div class="form-group">
+                <label for="professional_summary">Professional Summary:</label>
+                <textarea id="professional_summary" name="professional_summary" required></textarea>
+            </div>
+
+            <div class="horizontal-line"></div>
+                <br>
+            <center><h2>Work Information</h2></center>
+            <br>
+
+            <div class="row">
+                <div class="form-group">
+                    <label for="salary_expectations">Salary Expectations:</label>
+                    <input type="text" id="salary_expectations" name="salary_expectations" required>
+                </div>
+    
+                <div class="form-group">
+                    <label for="employment_type">Employment Type:</label>
+                    <select id="employment_type" name="employment_type" required>
+                        <option value="Full-Time">Full-Time</option>
+                        <option value="Part-Time">Part-Time</option>
+                        <option value="Contract">Contract</option>
+                    </select>
+                </div>
+            </div>
+
+
+            
+
+            <div class="form-group">
+                <label for="resume_photo">Resume Photo:</label>
+                <input type="file" id="resume_photo" name="resume_photo" required>
+            </div>
+
+            <div class="form-group">
+                <label for="references">References:</label>
+                <textarea id="references" name="references" required></textarea>
+            </div>
+
+            <div class="horizontal-line"></div>
+                <br>
+            <center><h2>Password Deatils</h2></center>
+            <br>
+
+
+            <div class="row">
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+    
+                <div class="form-group">
+                    <label for="confirm_password">Confirm Password:</label>
+                    <input type="password" id="confirm_password" name="confirm_password" required>
+                </div>
+            </div>
+
+            
+
+            
+
+            <div class="form-group">
+                <button type="submit">Register</button>
+            </div>
+            <div style="text-align: center; margin-top: 20px;">
+                Already registered? <a style="color: #D6536D; text-decoration: none;" href="/emlogin">Login</a>
+            </div>
+        </div>
+    </form>
+
+</div>
+</body>
+</html>

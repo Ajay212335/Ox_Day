@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Home</title>
+    <link rel="stylesheet" href="../static/css/free.css">
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='logo.png') }}" alt="Company Logo">
+        </div>
+        <nav class="menu-bar">
+            <ul>
+                <li><a href="{{ url_for('emhome') }}">Home</a></li>
+                <li><a href="{{ url_for('freecourse') }}">Free Course</a></li>
+                <li><a href="{{ url_for('display') }}">My Request</a></li>
+                <li><a href="{{ url_for('emcontact') }}">Contact Us</a></li>
+                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="row">
+            <div class="jjas">
+                <div class="jass">
+                    <img src="../static/java.png" width="80px">
+                </div>
+                
+                <br>
+                <a href="https://alison.com/courses?query=java">Java Free course</a>
+            </div>
+            <div class="jjas">
+                <div class="jass">
+                    <img src="../static/python.png" width="80px">
+                </div>
+                <br>
+                <a href="https://alison.com/tag/python?utm_source=google&utm_medium=cpc&utm_campaign=PPC_Tier-5_First-Click_Publisher-Courses&utm_adgroup=Tag_Python&gclid=CjwKCAiAg8S7BhATEiwAO2-R6pzJvtfvZP3wSC5KA4u1QA1Mr8OW03iTfDjw_1Udm6Dq1LMCCszxpRoCoC0QAvD_BwE&gad_source=1#google_vignette">Python Free course</a>
+            </div>
+            <div class="jjas">
+                <div class="jass">
+                    <img src="../static/c.png" width="80px">
+                </div>
+                <br>
+                <a href="https://alison.com/courses?query=c++">C++ Free course</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="jjas">
+                <div class="jass">
+                    <img src="../static/html.png" width="80px">
+                </div>
+                <br>
+                <a href="https://alison.com/courses?query=html">HTML Free course</a>
+            </div>
+            <div class="jjas">
+                <div class="jass">
+                    <img src="../static/css-3 (1).png" width="80px">
+                </div>
+                <br>
+                <a href="https://alison.com/courses?query=css">CSS Free course</a>
+            </div>
+            <div class="jjas">
+                <div class="jass">
+                    <img src="../static/js.png" width="80px">
+                </div>
+                <br>
+                <a href="https://alison.com/tag/javascript">Javascript Free course</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

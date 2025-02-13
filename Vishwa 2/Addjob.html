@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Job</title>
+    <link rel="stylesheet" href="../static/css/addjob.css">
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <img src="../static/logo.png" alt="Company Logo">
+        </div>
+        <nav class="menu-bar">
+            <ul>
+                <li><a href="{{ url_for('jobhome') }}">Home</a></li>
+                <li><a href="{{ url_for('add_job') }}">Add Job</a></li>
+                <li><a href="{{ url_for('contact') }}">Contact Us</a></li>
+                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section class="company-info">
+        <div class="company-logo">
+            <img src="{{ url_for('static', filename=logo_path) }}" alt="Company Logo" >
+        </div>
+        <div class="company-logo">
+            <h1>{{ company_name }}</h1>
+            <p>{{ location }},Tamil Nadu</p>
+        </div>
+
+    </section>
+
+
+    <form action="{{ url_for('add_job') }}" method="POST" class="form-container">
+        <h1>Add Job</h1>
+    
+        <div class="form-row">
+            <div class="form-group">
+                <label for="job_name">Job Name:</label>
+                <input type="text" id="job_name" name="job_name" required>
+            </div>
+            <div class="form-group">
+                <label for="salary">Salary Per Hour:</label>
+                <input type="text" id="salary" name="salary" required>
+            </div>
+            <div class="form-group">
+                <label for="location">Location:</label>
+                <input type="text" id="location" name="location" required>
+            </div>
+        </div>
+    
+        
+    
+        <div class="form-row">
+            <div class="form-group">
+                <label for="district">State:</label>
+                <input type="text" id="district" name="district" required>
+            </div>
+            <div class="form-group">
+                <label for="job_type">Job Type:</label>
+                <select id="job_type" name="job_type">
+                    <option value="Select">Select</option>
+                    <option value="Full-time">Full-time</option>
+                    <option value="Part-time">Part-time</option>
+                    <option value="Internship">Internship</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="job_source">Job value:</label>
+                <select id="job_source" name="job_source">
+                    <option value="Select">Select</option>
+                    <option value="Permanent">Permanent</option>
+                    <option value="Temporary">Temporary</option>
+                    <option value="Contractual / Temporary">Contractual / Temporary</option>
+                    <option value="Contractual / Permanent">Contractual / Permanent</option>
+                </select>
+            </div>
+        </div>
+    
+        <div class="form-row">
+            <div class="form-group full-width">
+                <label for="description">Full Description:</label>
+                <textarea id="description" name="description" maxlength="800" required></textarea>
+                <small id="charCount" style="display: block; margin-top: 5px;">0/800 characters used</small>
+            </div>
+        </div>
+    
+        <div class="form-row">
+            <div class="form-group full-width">
+                <button type="submit">Add Job</button>
+            </div>
+        </div>
+    </form>
+    <script>
+        const descriptionField = document.getElementById('description');
+        const charCountDisplay = document.getElementById('charCount');
+    
+        descriptionField.addEventListener('input', () => {
+            const charCount = descriptionField.value.length;
+            charCountDisplay.textContent = `${charCount}/800 characters used`;
+        });
+    </script>
+
+</body>
+</html>

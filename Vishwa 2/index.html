@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Job Portal</title>
+  <link rel="stylesheet" href="../static/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="logo-section">
+      <img src="../static/logo.png" alt="Indeed Logo" class="logo">
+      <ul class="main-nav">
+        <li><a href="./index.html">Home</a></li>
+        <li><a href="#">Company Reviews</a></li>
+        <li><a href="#">About Us</a></li>
+      </ul>
+    </div>
+    <nav>
+      <ul class="secondary-nav">
+        <li><a href="{{ url_for('emlogin') }}">Employee</a></li>
+        <li style="font-size: 34px; line-height: 24px;">|</li>
+        <li><a href="{{ url_for('joblogin') }}">Post Job</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="container">
+    <div class="search-bar">
+      <div class="search-bar-row">
+        <i class="material-icons" style="font-size:30px">work</i>
+        <input type="text" placeholder="Job title, keywords, or company" class="search-bar-input" required>
+      </div>
+      <div class="search-bar-row">
+        <i class="fa fa-map-marker" style="font-size:30px"></i>
+        <input type="text" placeholder="City, state, zip code, or 'remote'" class="search-bar-input" required>
+      </div>
+      <a href="{{ url_for('emlogin') }} ">Find Job</a>
+    </div>
+  </div>
+
+  <div class="resume">
+    <center><p><a href="#">Post your Resume</a> - It only takes a few seconds</p></center>
+  </div>
+
+  <div id="app">
+    <div class="containers">
+      <div class="job-listings">
+       
+      </div>
+
+      <div class="job-details" id="job-detail">
+        
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function goToPage() {
+      window.location.href = "Emregister.html";
+    }
+
+
+    const jobs = [
+      {
+        id: 1,
+        title: 'Typing Job',
+        company: 'Vishwa Printers',
+        location: 'Musiri, Tamil Nadu',
+        rating: 4.8,
+        salary: 'From ₹1,000 an hour',
+        type: 'Permanent',
+        description: [
+          'We are looking for a faster Writing professional to join our team and work for it.',
+          'Experience person should be needed.',
+        ],
+        descriptions: [
+          "We are seeking a skilled and fast Typing Professional to join our team at Vishwa Printers, located in Musiri, Tamil Nadu. This role involves typing and data entry tasks with a high level of accuracy and efficiency, ensuring that all written materials meet our quality standards. The ideal candidate should have prior experience in similar roles and demonstrate exceptional attention to detail, speed, and the ability to work under deadlines.",
+          " This position is open for both contractual and permanent employment, offering a competitive salary starting from ₹1,000 an hour. As a key part of our team, you will play a crucial role in handling important documentation, ensuring the smooth operation of our printing services. If you have excellent typing skills, a keen eye for detail, and are ready to contribute to a dynamic and fast-paced work environment, we would love to hear from you. Experience in the printing or publishing industry is a plus, but we welcome all candidates with the right skills and enthusiasm to apply.",
+        ],
+      },
+      {
+        id: 2,
+        title: 'Front End Developer',
+        company: 'Elamathi Resource',
+        location: 'Namakkal, Tamil Nadu',
+        rating: 4.5,
+        salary: 'From ₹900.75 an hour',
+        type: 'Contractual / Temporary',
+        description: [
+          'React, HTML developer needed.',
+          'Java Full Stack development knowledge required.',
+        ],
+        descriptions: [
+          "We are seeking a dedicated and skilled Front End Developer to join Elamathi Resource, located in Namakkal, Tamil Nadu. This role offers an exciting opportunity to work on innovative web development projects as part of a dynamic team. The position is contractual or temporary, making it an ideal choice for professionals looking for flexible work arrangements. The primary responsibilities include developing responsive and visually appealing user interfaces using React and HTML, ensuring seamless integration with back-end systems, and optimizing applications for performance and scalability.",
+          " Additionally, knowledge of Java Full Stack development will be a significant advantage. Candidates should have a strong foundation in front-end technologies, excellent problem-solving skills, and the ability to work collaboratively in a team-oriented environment. The role offers a competitive hourly rate starting from ₹900.75, along with a chance to gain valuable experience in a fast-paced and resourceful setting. This is an excellent opportunity for individuals passionate about delivering high-quality, user-centric applications.",
+        ],
+      },
+      {
+        id: 3,
+        title: 'Web Developer',
+        company: 'Mahalakshmi Foundation',
+        location: 'Trichy, Tamil Nadu',
+        rating: 4.6,
+        salary: 'From ₹2,066.01 an hour',
+        type: 'Contractual / Temporary',
+        description: [
+          'Full stack developer needed',
+          'Relevant experience in content writing and AI training is required.',
+        ],
+        descriptions: [
+          "We are looking for a skilled and experienced Web Developer to join our team at Mahalakshmi Foundation in Trichy, Tamil Nadu, on a contractual/temporary basis. This role involves developing, maintaining, and improving web applications while ensuring they align with the foundation's diverse programs and objectives. The ideal candidate will be proficient in front-end and back-end technologies and have relevant experience in content integration and AI-based solutions. Responsibilities include building responsive web applications, collaborating with content teams, implementing AI-based features like chatbots, and conducting thorough testing to ensure high performance and compatibility across devices.",
+          "Candidates should possess strong technical skills, including proficiency in HTML, CSS, JavaScript, ReactJS, Node.js, Python, and experience with database systems like MySQL or MongoDB. Knowledge of AI tools and platforms, along with excellent problem-solving and debugging abilities, is highly desirable. Effective communication, time management, and the ability to work collaboratively are essential for this role.",
+          "The position offers flexible working hours with remote options and competitive hourly compensation starting at ₹2,066.01. Applicants will have the opportunity to work on meaningful projects that make a difference while gaining hands-on experience with AI and advanced web technologies.",
+        ],
+      },
+      {
+        id: 4,
+        title: 'Call Center',
+        company: 'Gowthami Call Center',
+        location: 'Salem, Tamil Nadu',
+        rating: 4.4,
+        salary: 'From ₹850.01 an hour',
+        type: 'Permanent',
+        description: [
+          'Good speaker',
+          'Experience Person',
+        ],
+        descriptions: [
+          "At Gowthami Call Center, communication skills are the cornerstone of success. The company seeks individuals who are confident and articulate speakers. Being a 'good speaker' implies not only the ability to communicate fluently but also to engage customers effectively, address their concerns, and provide satisfactory resolutions. This skill is crucial for maintaining the company's high service standards and ensuring customer satisfaction.",
+          "Working at Gowthami Call Center involves a dynamic set of responsibilities. Employees are expected to handle inbound and outbound calls professionally, ensuring prompt responses to customer inquiries. Additionally, they may assist in resolving complaints, processing orders, and providing information about the company’s products or services. The role demands a keen ability to multitask, as agents often manage multiple queries and databases simultaneously.",
+          "A permanent position at Gowthami Call Center provides not just job stability but also opportunities for career growth. Employees who demonstrate exceptional performance may advance to supervisory roles, where they can mentor new recruits or oversee team operations. The company’s supportive environment, combined with a focus on skill development, makes it an ideal workplace for those looking to build a long-term career in the call center industry.",
+        ],
+      },
+    ];
+
+    
+    function createJobCard(job) {
+      return `
+        <div id="job-${job.id}" class="job-card">
+          <h1 style="margin-left: 20px;">${job.title}</h1>
+          <p style="font-size: large; font-weight: 600; color: black;">
+            ${job.company} ${job.rating} <span class="fa fa-star"></span>
+          </p>
+          <p>
+            <i class="fa fa-map-marker" style="font-size:20px; margin-top:5px;"></i> ${job.location}
+          </p>
+          <div class="salary"; style=" margin-left: 18px;">
+            <div class="salary-con" >
+              <p>${job.salary}</p>
+            </div>
+            <div class="salary-con">
+              <p>${job.type}</p>
+            </div>
+            <div class="salary-con">
+              
+                ${job.description.map((desc) => `<li>${desc}</li>`).join('')}
+              
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    
+    const jobListingsContainer = document.querySelector('.job-listings');
+    jobListingsContainer.innerHTML = jobs.map(createJobCard).join('');
+
+    
+    const jobDetailsContainer = document.getElementById('job-detail');
+
+    function showJobDetails(jobId) {
+      const job = jobs.find((job) => job.id === jobId);
+      if (!job) return;
+      jobDetailsContainer.innerHTML = `
+      <div class="cons">
+        <div class="xdxd" >
+        <h1 style="font-size:xx-large; ">${job.title}</h1>
+        </div>
+        <div class="coms">
+          <h2 style="font-size: xx-large;"> Job Details</h2>
+          <div class="vishwa">
+          <p style="font-size: x-large; font-weight: 600; color: black;">
+            ${job.company} ${job.rating} <span class="fa fa-star"></span>
+          </p >
+          <br>
+          <a href="{{ url_for('emlogin') }} ">Apply Now <i class="fa fa-external-link"></i></a>
+          <br>
+          </div>
+          <h2>Location</h2>
+          <div class="vishwa">
+            <p style="font-size:20px; margin-top:5px; color: black  ">
+            <i class="fa fa-map-marker" style="font-size:20px; margin-top:5px; color: black" ></i> ${job.location}
+          </p>
+          </div>
+          <br>
+          <h2 >Job Type </h2>
+          <div class="salary"; style=" display: flex; gap: 10px; border-bottom: 2px solid #d1d5db; padding-bottom:30px ">
+            
+            <div class="salary-cons">
+                <p>${job.salary}</p>
+              </div>
+              <div class="salary-cons">
+                <p>${job.type}</p>
+              </div>
+            </div>
+            <h2>Full Job Description</h2>
+          <ul>
+            ${job.descriptions.map((desc) => `<li>${desc}</li>`).join('')}
+          </ul>
+        </div
+      </div>
+      `;
+    }
+
+   
+    document.querySelectorAll('.job-card').forEach((card) => {
+      card.addEventListener('click', () => {
+        const jobId = parseInt(card.id.split('-')[1], 10);
+        showJobDetails(jobId);
+      });
+    });
+
+    
+    showJobDetails(1);
+  </script>
+</body>
+</html>

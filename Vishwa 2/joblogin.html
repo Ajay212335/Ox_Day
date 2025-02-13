@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Login</title>
+    <link rel="stylesheet" href="../static/css/login.css">
+</head>
+<body>
+    <div class="container">
+        <div class="image-container">
+            <img src="../static/logo.png" alt="Job Login Illustration">
+        </div>
+        <div class="vertical-line"></div>
+        <div class="form-container">
+            <div class="hds">
+                <h1>Job Login</h1>
+                
+            </div>
+
+            
+
+            <form action="/joblogin" method="POST">
+                <div class="forms">
+                    {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    <div>
+                        {% for category, message in messages %}
+                            <p class="flash-message {{ category }}">{{ message }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                {% endwith %}
+                    <div class="form-group">
+                        <label for="email">Email Address:</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit">Login</button>
+                    </div>
+                    <div style="text-align: center; margin-top: 20px;">
+                        Create Account? <a style="color: #D6536D; text-decoration: none;" href="/jobregister">Sign-Up</a>
+                    </div>
+                </div>
+                
+            </form>
+        </div>
+    </div>
+</body>
+</html>

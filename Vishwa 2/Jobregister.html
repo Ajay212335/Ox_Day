@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Registration</title>
+    <link rel="stylesheet" href="../static/css/job.css">
+</head>
+<body>
+    <div class="form-container">
+        <div class="hds">
+            <h1 style="color: #fff;">Job Registration</h1>
+        </div>
+        
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <div>
+            {% for category, message in messages %}
+                <p class="flash-message {{ category }}">{{ message }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endwith %}
+
+
+
+
+        <form action="/register_job" method="POST" enctype="multipart/form-data">
+            <div class="Forms">
+                
+                <center><h2>Company Information</h2></center>
+                <br>
+                <div class="row">
+                    <div class="form-group">
+                        <label for="company_name">Company Name:</label>
+                        <input type="text" id="company_name" name="company_name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="industry">Industry/Field of Work:</label>
+                        <input type="text" id="industry" name="industry" required>
+                    </div>
+                </div>
+            
+                <div class="form-group">
+                    <label for="company_description">Company Description:</label>
+                    <textarea id="company_description" name="company_description" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="location">Location:</label>
+                    <input id="location" name="location" required>
+                </div>
+                
+                <div class="row">
+                    <div class="form-group">
+                        <label for="year_of_establishment">Year of Establishment:</label>
+                        <input type="text" id="year_of_establishment" name="year_of_establishment" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address:</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                </div>
+            
+                <div class="row">
+                    <div class="form-group">
+                        <label for="phone">Phone Number:</label>
+                        <input type="text" id="phone" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="website">Website URL:</label>
+                        <input type="url" id="website" name="website" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="logo">Company Logo:</label>
+                    <input type="file" id="logo" name="logo" required>
+                </div>
+
+                <div class="horizontal-line"></div>
+                <br>
+                <center><h2>Password Details</h2></center>
+                <br>
+
+                <div class="row">
+                    <div class="form-group">
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirm_password">Confirm Password:</label>
+                        <input type="password" id="confirm_password" name="confirm_password" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit">Register</button>
+                </div>
+                <div style="text-align: center; margin-top: 20px;">
+                    Already registered? <a style="color: #D6536D; text-decoration: none;" href="/joblogin">Login</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

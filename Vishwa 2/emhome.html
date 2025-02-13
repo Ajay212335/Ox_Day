@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/emhome.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='logo.png') }}" alt="Company Logo">
+        </div>
+        <nav class="menu-bar">
+            <ul>
+                <li><a href="{{ url_for('emhome') }}">Home</a></li>
+                <li><a href="{{ url_for('freecourse') }}">Free Course</a></li>
+                <li><a href="{{ url_for('display') }}">My Request</a></li>
+                <li><a href="{{ url_for('emcontact') }}">Contact Us</a></li>
+                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="profile-info">
+        <h1>Welcome, {{ full_name }}</h1>
+        <p>Email: {{ email }}</p>
+    </div>
+
+    <div class="containers">
+        <div class="search-bar">
+            <form method="GET" action="{{ url_for('emhome') }}">
+            <div class="search-bar-row">
+                <i class="material-icons" style="font-size:30px; margin-right: 10px;">work</i>
+                <input type="text" name="job_name" placeholder="Job title, keywords, or company" value="{{ request.args.get('job_name', '') }}" class="search-bar-input" required>
+            </div>
+            <div class="search-bar-row">
+                <i class="fa fa-map-marker" style="font-size:30px; margin-right: 10px;"></i>
+                <input type="text" name="location" placeholder="Search by location" value="{{ request.args.get('location', '') }}"  class="search-bar-input" required>
+            </div>
+                <button type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="job-list">
+            {% for job in jobs %}
+            <div class="job-item" 
+                 onclick="showJobDetails(
+                    '{{ job._id }}',
+                    '{{ job.job_name }}',
+                    '{{ job.location }}',
+                    '{{ job.salary }}',
+                    '{{ job.job_type }}',
+                    '{{ job.description }}',
+                    '{{ job.district }}',
+                    '{{ job.company_name }}',
+                    '{{ job.job_source }}')"
+                 ontouchstart="">
+                <h1>{{ job.job_name }}</h1>
+                <p style="font-size: large; font-weight: 600; margin-top: -10px;">{{ job.company_name }} 4.6 <span class="fa fa-star"></span></p>
+                <p style="margin-top: -15px;"><i class="fa fa-map-marker" style="font-size:20px; margin-top:5px;"></i> {{ job.location }}, {{ job.district }}</p>
+                <div class="tyr">
+                    <div class="try">
+                        <p>From ₹{{ job.salary }} an hour</p>
+                    </div>
+                    <div class="try">
+                        <p>{{ job.job_source }}</p>
+                    </div>
+                </div>
+                <p style="font-size: larger; color: #fff;">View Full Details About The Job</p>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="job-details" id="job-detail">
+            <h2>Select a job to view details</h2>
+        </div>
+    </div>
+
+    <script>
+        function showJobDetails(jobId, jobName, location, salary, jobType, description, district, companyName, jobSource) {
+            const jobDetailElement = document.getElementById('job-detail');
+            if (!jobDetailElement) {
+                console.error("Element with ID 'job-detail' not found.");
+                return;
+            }
+
+            const jobDetailsHTML = `
+                <div class="vishwa">
+                    <h2>${jobName}</h2>    
+                </div>
+                <h2 style="margin-top: 60px; font-size:xx-large">Job Details</h2>
+                <div class="namess">
+                    ${companyName} 4.6 <span class="fa fa-star"></span>
+                    <p></p>
+                    <a href="/apply/${jobId}" class="apply-link">Apply Now <i class="fa fa-external-link"></i></a>    
+                </div>
+                <div class="namesss">
+                    <h2>Location</h2>
+                    <i class="fa fa-map-marker" style="font-size:20px; margin-top:0px; margin-bottom:20px;"></i> ${location}, ${district}<br>
+                </div>
+                <div class="namesss">
+                    <h2> Job Type </h2>
+                    <div class="tyrs">
+                            <div class="trys">
+                                <p>From ₹${salary} an hour</p>
+                            </div>
+                            <div class="trys">
+                                <p>${jobSource}</p>
+                            </div>
+                    </div>
+                    <br>
+                </div>
+                <div class="mk">
+                    <h2>Full job Description</h2>
+                    <p>${description}</p>
+                </div>
+            `;
+
+            jobDetailElement.innerHTML = jobDetailsHTML;
+        }
+    </script>
+</body>
+</html>
